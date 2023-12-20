@@ -1,10 +1,12 @@
-[gd_scene load_steps=8 format=3 uid="uid://dvdtdj1y8t544"]
+[gd_scene load_steps=10 format=3 uid="uid://dvdtdj1y8t544"]
 
-[ext_resource type="Script" path="res://player.gd" id="1_c63en"]
+[ext_resource type="Script" path="res://actors/player.gd" id="1_c63en"]
 [ext_resource type="Texture2D" uid="uid://c78lt4xdv7151" path="res://art/playerGrey_up1.png" id="2_6mq3w"]
+[ext_resource type="PackedScene" uid="uid://xmyl3kitr57i" path="res://actors/Team.tscn" id="2_gymdj"]
 [ext_resource type="Texture2D" uid="uid://dgvtatx2i8rbo" path="res://art/playerGrey_up2.png" id="3_7u1kb"]
 [ext_resource type="Texture2D" uid="uid://dcjf4b11v0pow" path="res://art/playerGrey_walk1.png" id="4_dsb61"]
 [ext_resource type="Texture2D" uid="uid://cr7qbwaxjw4fh" path="res://art/playerGrey_walk2.png" id="5_ycn73"]
+[ext_resource type="Script" path="res://actors/soldier_sprite.gd" id="7_vxvsv"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_ihcm0"]
 animations = [{
@@ -40,11 +42,15 @@ position = Vector2(161, 187)
 script = ExtResource("1_c63en")
 metadata/_edit_group_ = true
 
-[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+[node name="Team" parent="." instance=ExtResource("2_gymdj")]
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." node_paths=PackedStringArray("team")]
 scale = Vector2(0.5, 0.5)
 sprite_frames = SubResource("SpriteFrames_ihcm0")
 animation = &"walk"
 frame_progress = 0.24726
+script = ExtResource("7_vxvsv")
+team = NodePath("../Team")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("CapsuleShape2D_dni3p")
