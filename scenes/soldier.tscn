@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=3 uid="uid://d3cjje873lnfc"]
+[gd_scene load_steps=17 format=3 uid="uid://d3cjje873lnfc"]
 
 [ext_resource type="Script" path="res://scenes/soldier.gd" id="1_81x50"]
 [ext_resource type="Texture2D" uid="uid://dd45ioeer750b" path="res://art/enemyFlyingAlt_1.png" id="1_anlxk"]
@@ -11,8 +11,9 @@
 [ext_resource type="PackedScene" uid="uid://xmyl3kitr57i" path="res://scenes/components/TeamComponent.tscn" id="9_h1icw"]
 [ext_resource type="Script" path="res://scenes/ai.gd" id="10_v8xur"]
 [ext_resource type="PackedScene" uid="uid://dlg4jxu0tf3gn" path="res://scenes/components/HealthComponent.tscn" id="11_l1oc7"]
+[ext_resource type="PackedScene" uid="uid://fpukbu2ndkke" path="res://scenes/components/HitboxComponent.tscn" id="12_s1a8v"]
 
-[sub_resource type="SpriteFrames" id="SpriteFrames_gkx8l"]
+[sub_resource type="SpriteFrames" id="SpriteFrames_bsvpx"]
 animations = [{
 "frames": [{
 "duration": 1.0,
@@ -48,9 +49,13 @@ animations = [{
 "speed": 3.0
 }]
 
-[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_2p77u"]
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_vt8tr"]
 radius = 34.0
 height = 82.0
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_r85ik"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_d314s"]
 
 [node name="Soldier" type="CharacterBody2D"]
 position = Vector2(148, 125)
@@ -61,33 +66,50 @@ metadata/_edit_group_ = true
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." node_paths=PackedStringArray("team")]
 scale = Vector2(0.74, 0.74)
-sprite_frames = SubResource("SpriteFrames_gkx8l")
+sprite_frames = SubResource("SpriteFrames_bsvpx")
 animation = &"fly"
 frame_progress = 0.907162
 script = ExtResource("8_pv0x3")
-team = NodePath("../Team")
+team = NodePath("../TeamComponent")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 rotation = -1.5708
-shape = SubResource("CapsuleShape2D_2p77u")
+shape = SubResource("CapsuleShape2D_vt8tr")
 
-[node name="Team" parent="." instance=ExtResource("9_h1icw")]
-team = 1
+[node name="TeamComponent" parent="." instance=ExtResource("9_h1icw")]
+team = 2
 
-[node name="AI" type="Node2D" parent="." node_paths=PackedStringArray("actor")]
+[node name="AI" type="Node2D" parent="." node_paths=PackedStringArray("actor", "team")]
 script = ExtResource("10_v8xur")
-speed = 30.0
+speed = 100.0
 actor = NodePath("..")
+team = NodePath("../TeamComponent")
 
 [node name="Timer" type="Timer" parent="AI"]
 wait_time = 0.2
 autostart = true
 
 [node name="NavigationAgent2D" type="NavigationAgent2D" parent="AI"]
-avoidance_enabled = true
 debug_enabled = true
 debug_path_custom_color = Color(1, 0, 1, 1)
 
+[node name="DetectionZone" type="Area2D" parent="AI"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="AI/DetectionZone"]
+scale = Vector2(44.17, 44.17)
+shape = SubResource("CircleShape2D_r85ik")
+debug_color = Color(0.803922, 0.376471, 0.494118, 0.419608)
+
 [node name="HealthComponent" parent="." instance=ExtResource("11_l1oc7")]
 
+[node name="HitboxComponent" parent="." node_paths=PackedStringArray("team", "health") instance=ExtResource("12_s1a8v")]
+team = NodePath("../TeamComponent")
+health = NodePath("../HealthComponent")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="HitboxComponent"]
+scale = Vector2(5.91, 5.91)
+shape = SubResource("CircleShape2D_d314s")
+debug_color = Color(0.615686, 0.517647, 0.407843, 0.419608)
+
 [connection signal="timeout" from="AI/Timer" to="AI" method="_on_timer_timeout"]
+[connection signal="area_entered" from="AI/DetectionZone" to="AI" method="_on_detection_zone_area_entered"]

@@ -1,4 +1,4 @@
-[gd_scene load_steps=33 format=3 uid="uid://nxfhepak18cv"]
+[gd_scene load_steps=36 format=3 uid="uid://nxfhepak18cv"]
 
 [ext_resource type="Script" path="res://scenes/main.gd" id="1_sn1ky"]
 [ext_resource type="PackedScene" uid="uid://d3cjje873lnfc" path="res://scenes/Soldier.tscn" id="2_5casl"]
@@ -15,7 +15,9 @@
 [ext_resource type="Script" path="res://scenes/soldier_sprite.gd" id="9_eyk1d"]
 [ext_resource type="PackedScene" uid="uid://xmyl3kitr57i" path="res://scenes/components/TeamComponent.tscn" id="10_gp1to"]
 [ext_resource type="Script" path="res://scenes/ai.gd" id="11_1dpec"]
-[ext_resource type="PackedScene" uid="uid://dvdtdj1y8t544" path="res://scenes/player.tscn" id="15_7r13i"]
+[ext_resource type="PackedScene" uid="uid://dvdtdj1y8t544" path="res://scenes/Player.tscn" id="15_7r13i"]
+[ext_resource type="PackedScene" uid="uid://dlg4jxu0tf3gn" path="res://scenes/components/HealthComponent.tscn" id="17_y2vf7"]
+[ext_resource type="PackedScene" uid="uid://fpukbu2ndkke" path="res://scenes/components/HitboxComponent.tscn" id="18_ps4go"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_gkx8l"]
 animations = [{
@@ -1343,6 +1345,9 @@ sources/0 = SubResource("TileSetAtlasSource_4avcj")
 sources/1 = SubResource("TileSetAtlasSource_usrj4")
 sources/4 = SubResource("TileSetAtlasSource_hpe2u")
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_al8x1"]
+size = Vector2(59.0909, 60.2274)
+
 [node name="Main" type="Node"]
 script = ExtResource("1_sn1ky")
 mob_scene = SubResource("PackedScene_c2dqd")
@@ -1358,11 +1363,28 @@ layer_0/tile_data = PackedInt32Array(0, 393220, 0, 65536, 327684, 0, 131072, 327
 [node name="StartPosition" type="Marker2D" parent="."]
 position = Vector2(252, 245)
 
-[node name="Soldier" parent="." node_paths=PackedStringArray("player") instance=ExtResource("2_5casl")]
-player = NodePath("../Player")
+[node name="Soldier" parent="." instance=ExtResource("2_5casl")]
 
-[node name="Soldier2" parent="." node_paths=PackedStringArray("player") instance=ExtResource("2_5casl")]
+[node name="Soldier2" parent="." instance=ExtResource("2_5casl")]
 position = Vector2(296, 250)
-player = NodePath("../Player")
+
+[node name="Node2D" type="Node2D" parent="."]
+position = Vector2(623, 661)
+scale = Vector2(1.76, 1.76)
+
+[node name="TeamComponent" parent="Node2D" instance=ExtResource("10_gp1to")]
+team = 2
+
+[node name="HealthComponent" parent="Node2D" instance=ExtResource("17_y2vf7")]
+
+[node name="HitboxComponent" parent="Node2D" node_paths=PackedStringArray("team", "health") instance=ExtResource("18_ps4go")]
+team = NodePath("../TeamComponent")
+health = NodePath("../HealthComponent")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Node2D/HitboxComponent"]
+shape = SubResource("RectangleShape2D_al8x1")
+
+[node name="Sprite2D" type="Sprite2D" parent="Node2D"]
+texture = ExtResource("4_xnaq0")
 
 [connection signal="hit" from="Player" to="." method="game_over"]

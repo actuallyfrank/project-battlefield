@@ -1,7 +1,6 @@
 extends AnimatedSprite2D
 
-@export var team: Team
-
+@export var team: TeamComponent
 
 func _ready():
 	update_team()
