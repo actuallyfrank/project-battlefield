@@ -2,7 +2,6 @@ extends Area2D
 signal hit(body: Node2D)
 
 @export var speed = 400;
-var screen_size;
 
 const inputs = {
 	left = "move_left",
@@ -10,9 +9,6 @@ const inputs = {
 	up = "move_up",
 	down = "move_down"
 }
-
-func _ready():
-	screen_size = get_viewport_rect().size;
 
 func start(pos: Vector2):
 	position = pos;
@@ -47,9 +43,7 @@ func animate_walk(velocity: Vector2):
 
 
 func calculate_position(current_position: Vector2, velocity: Vector2, delta: float) -> Vector2:
-	var pos: Vector2 = Vector2.ZERO; 
-	pos =  current_position + velocity.normalized() * speed * delta;
-	return pos.clamp(Vector2.ZERO, screen_size);
+	return current_position + velocity.normalized() * speed * delta;
 
 func calculate_velocity() -> Vector2:
 	var velocity = Vector2();
