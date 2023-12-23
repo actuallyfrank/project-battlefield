@@ -1,7 +1,7 @@
 extends Area2D
 class_name HitboxComponent
 
-@export var team: TeamComponent
+@export var teamComponent: TeamComponent
 @export var health: HealthComponent
 
 func hit(damage: int):

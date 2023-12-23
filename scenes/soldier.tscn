@@ -77,13 +77,13 @@ rotation = -1.5708
 shape = SubResource("CapsuleShape2D_vt8tr")
 
 [node name="TeamComponent" parent="." instance=ExtResource("9_h1icw")]
-team = 2
+team = 1
 
-[node name="AI" type="Node2D" parent="." node_paths=PackedStringArray("actor", "team")]
+[node name="AI" type="Node2D" parent="." node_paths=PackedStringArray("actor", "teamComponent")]
 script = ExtResource("10_v8xur")
 speed = 100.0
 actor = NodePath("..")
-team = NodePath("../TeamComponent")
+teamComponent = NodePath("../TeamComponent")
 
 [node name="Timer" type="Timer" parent="AI"]
 wait_time = 0.2
@@ -102,8 +102,8 @@ debug_color = Color(0.803922, 0.376471, 0.494118, 0.419608)
 
 [node name="HealthComponent" parent="." instance=ExtResource("11_l1oc7")]
 
-[node name="HitboxComponent" parent="." node_paths=PackedStringArray("team", "health") instance=ExtResource("12_s1a8v")]
-team = NodePath("../TeamComponent")
+[node name="HitboxComponent" parent="." node_paths=PackedStringArray("teamComponent", "health") instance=ExtResource("12_s1a8v")]
+teamComponent = NodePath("../TeamComponent")
 health = NodePath("../HealthComponent")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="HitboxComponent"]

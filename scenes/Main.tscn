@@ -1377,8 +1377,8 @@ team = 2
 
 [node name="HealthComponent" parent="Node2D" instance=ExtResource("17_y2vf7")]
 
-[node name="HitboxComponent" parent="Node2D" node_paths=PackedStringArray("team", "health") instance=ExtResource("18_ps4go")]
-team = NodePath("../TeamComponent")
+[node name="HitboxComponent" parent="Node2D" node_paths=PackedStringArray("teamComponent", "health") instance=ExtResource("18_ps4go")]
+teamComponent = NodePath("../TeamComponent")
 health = NodePath("../HealthComponent")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Node2D/HitboxComponent"]

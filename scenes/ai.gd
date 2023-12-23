@@ -1,7 +1,7 @@
 extends Node2D
 @export var speed: float = 10
 @export var actor: CharacterBody2D
-@export var team: TeamComponent
+@export var teamComponent: TeamComponent
 
 var target: Node2D = null
 
@@ -26,12 +26,13 @@ func _on_timer_timeout():
 
 func _on_detection_zone_area_entered(area:Area2D):
 	if area is HitboxComponent:
-		if area.team == team: 
-			print("same team")
+		if area.teamComponent.team == teamComponent.team: 
+			print("same teamComponent")
 			return
 
 		if target != area:
 			target = area
 			print('target acquired', area)
+			print('teamComponent', area.teamComponent)
 
 		area.hit(10);

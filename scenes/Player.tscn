@@ -64,8 +64,8 @@ position_smoothing_enabled = true
 
 [node name="HealthComponent" parent="." instance=ExtResource("8_kam60")]
 
-[node name="HitboxComponent" parent="." node_paths=PackedStringArray("team", "health") instance=ExtResource("9_rvitg")]
-team = NodePath("../TeamComponent")
+[node name="HitboxComponent" parent="." node_paths=PackedStringArray("teamComponent", "health") instance=ExtResource("9_rvitg")]
+teamComponent = NodePath("../TeamComponent")
 health = NodePath("../HealthComponent")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="HitboxComponent"]
