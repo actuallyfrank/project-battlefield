@@ -1,4 +1,4 @@
-[gd_scene load_steps=16 format=3 uid="uid://d3cjje873lnfc"]
+[gd_scene load_steps=18 format=3 uid="uid://d3cjje873lnfc"]
 
 [ext_resource type="Script" path="res://scenes/soldier.gd" id="1_81x50"]
 [ext_resource type="Texture2D" uid="uid://dd45ioeer750b" path="res://art/enemyFlyingAlt_1.png" id="1_anlxk"]
@@ -12,6 +12,8 @@
 [ext_resource type="PackedScene" uid="uid://dlg4jxu0tf3gn" path="res://scenes/components/HealthComponent.tscn" id="11_l1oc7"]
 [ext_resource type="PackedScene" uid="uid://obq0w7aamdgg" path="res://scenes/components/AIComponent.tscn" id="12_fre7e"]
 [ext_resource type="PackedScene" uid="uid://fpukbu2ndkke" path="res://scenes/components/HitboxComponent.tscn" id="12_s1a8v"]
+[ext_resource type="PackedScene" uid="uid://c4r0jiujlplbw" path="res://scenes/components/WeaponComponent.tscn" id="13_jijc6"]
+[ext_resource type="Texture2D" uid="uid://bfk4qcl312xmi" path="res://art/character.png" id="14_ihrly"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_bsvpx"]
 animations = [{
@@ -77,7 +79,8 @@ shape = SubResource("CapsuleShape2D_vt8tr")
 [node name="TeamComponent" parent="." instance=ExtResource("9_h1icw")]
 team = 1
 
-[node name="HealthComponent" parent="." instance=ExtResource("11_l1oc7")]
+[node name="HealthComponent" parent="." node_paths=PackedStringArray("soldier") instance=ExtResource("11_l1oc7")]
+soldier = NodePath("..")
 
 [node name="HitboxComponent" parent="." node_paths=PackedStringArray("teamComponent", "health") instance=ExtResource("12_s1a8v")]
 teamComponent = NodePath("../TeamComponent")
@@ -88,6 +91,12 @@ scale = Vector2(5.91, 5.91)
 shape = SubResource("CircleShape2D_d314s")
 debug_color = Color(0.615686, 0.517647, 0.407843, 0.419608)
 
-[node name="AIComponent" parent="." node_paths=PackedStringArray("actor", "teamComponent") instance=ExtResource("12_fre7e")]
+[node name="AIComponent" parent="." node_paths=PackedStringArray("actor", "teamComponent", "weaponComponent") instance=ExtResource("12_fre7e")]
 actor = NodePath("..")
 teamComponent = NodePath("../TeamComponent")
+weaponComponent = NodePath("../WeaponComponent")
+
+[node name="WeaponComponent" parent="." instance=ExtResource("13_jijc6")]
+
+[node name="Sword" type="Sprite2D" parent="WeaponComponent"]
+texture = ExtResource("14_ihrly")

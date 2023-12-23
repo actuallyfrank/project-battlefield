@@ -1358,8 +1358,22 @@ layer_0/tile_data = PackedInt32Array(0, 393220, 0, 65536, 327684, 0, 131072, 327
 position = Vector2(252, 245)
 
 [node name="Soldier" parent="." instance=ExtResource("2_5casl")]
+position = Vector2(145, 370)
 
 [node name="Archer" parent="." instance=ExtResource("16_gxegu")]
+position = Vector2(370, 351)
 
 [node name="Player" parent="." instance=ExtResource("18_ycjvd")]
 position = Vector2(635, 760)
+
+[node name="Archer2" parent="." instance=ExtResource("16_gxegu")]
+position = Vector2(740, 702)
+
+[node name="Archer3" parent="." instance=ExtResource("16_gxegu")]
+position = Vector2(1110, 1053)
+
+[node name="Archer4" parent="." instance=ExtResource("16_gxegu")]
+position = Vector2(1480, 1404)
+
+[node name="Soldier2" parent="." instance=ExtResource("2_5casl")]
+position = Vector2(290, 740)

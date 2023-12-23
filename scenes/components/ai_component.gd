@@ -2,9 +2,10 @@ extends Node2D
 @export var speed: float = 10
 @export var actor: CharacterBody2D
 @export var teamComponent: TeamComponent
+@export var weaponComponent: WeaponComponent
 
-var target: Node2D = null
-var actorsInRange: Array[Node2D] = []
+var target: HitboxComponent = null
+var actorsInRange: Array[HitboxComponent] = []
 
 @onready var nav_agent := $NavigationAgent2D as NavigationAgent2D
 
@@ -16,13 +17,19 @@ func _physics_process(delta: float) -> void:
 	actor.move_and_slide()
 
 func make_path_to_target() -> void:
-	if target == null:
-		return
-
 	nav_agent.target_position = target.global_position
 
 func _on_timer_timeout():
+	if (target == null):
+		return
+
 	make_path_to_target()
+
+	if (weaponComponent == null):
+		return
+	
+	weaponComponent.attack(target)
+	
 
 func isPossibleTarget(area: Area2D) -> bool:
 	if area is HitboxComponent and area.teamComponent is TeamComponent:
@@ -49,7 +56,6 @@ func _on_detection_zone_area_entered(area:Area2D):
 		return
 
 	target = area
-	area.hit(10);
 
 	if actorsInRange.find(area) == -1:
 		actorsInRange.append(area)
