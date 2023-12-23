@@ -1,0 +1,93 @@
+[gd_scene load_steps=16 format=3 uid="uid://crejbqrq44457"]
+
+[ext_resource type="Script" path="res://scenes/soldier.gd" id="1_uksc7"]
+[ext_resource type="Texture2D" uid="uid://dd45ioeer750b" path="res://art/enemyFlyingAlt_1.png" id="2_1mqii"]
+[ext_resource type="Texture2D" uid="uid://dptx8jowau6ng" path="res://art/enemyFlyingAlt_2.png" id="3_bt3jy"]
+[ext_resource type="Texture2D" uid="uid://c6s328y6qy53b" path="res://art/enemySwimming_1.png" id="4_17ihv"]
+[ext_resource type="Texture2D" uid="uid://cpvl2miig1lko" path="res://art/enemySwimming_2.png" id="5_7253p"]
+[ext_resource type="Texture2D" uid="uid://cn054phjus4rl" path="res://art/enemyWalking_1.png" id="6_nv4dy"]
+[ext_resource type="Texture2D" uid="uid://ckc87no0bpdb3" path="res://art/enemyWalking_2.png" id="7_ig7u2"]
+[ext_resource type="Script" path="res://scenes/soldier_sprite.gd" id="8_spfiq"]
+[ext_resource type="PackedScene" uid="uid://xmyl3kitr57i" path="res://scenes/components/TeamComponent.tscn" id="9_egnva"]
+[ext_resource type="PackedScene" uid="uid://dlg4jxu0tf3gn" path="res://scenes/components/HealthComponent.tscn" id="11_ewk5b"]
+[ext_resource type="PackedScene" uid="uid://fpukbu2ndkke" path="res://scenes/components/HitboxComponent.tscn" id="12_do701"]
+[ext_resource type="PackedScene" uid="uid://obq0w7aamdgg" path="res://scenes/components/AIComponent.tscn" id="12_vhg02"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_bsvpx"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_1mqii")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_bt3jy")
+}],
+"loop": true,
+"name": &"fly",
+"speed": 3.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("4_17ihv")
+}, {
+"duration": 1.0,
+"texture": ExtResource("5_7253p")
+}],
+"loop": true,
+"name": &"swim",
+"speed": 3.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("6_nv4dy")
+}, {
+"duration": 1.0,
+"texture": ExtResource("7_ig7u2")
+}],
+"loop": true,
+"name": &"walk",
+"speed": 3.0
+}]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_vt8tr"]
+radius = 34.0
+height = 82.0
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_d314s"]
+
+[node name="Archer" type="CharacterBody2D"]
+position = Vector2(296, 250)
+motion_mode = 1
+wall_min_slide_angle = 0.0
+script = ExtResource("1_uksc7")
+metadata/_edit_group_ = true
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." node_paths=PackedStringArray("team")]
+scale = Vector2(0.74, 0.74)
+sprite_frames = SubResource("SpriteFrames_bsvpx")
+animation = &"fly"
+frame_progress = 0.907162
+script = ExtResource("8_spfiq")
+team = NodePath("../TeamComponent")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+rotation = -1.5708
+shape = SubResource("CapsuleShape2D_vt8tr")
+
+[node name="TeamComponent" parent="." instance=ExtResource("9_egnva")]
+team = 2
+
+[node name="HealthComponent" parent="." instance=ExtResource("11_ewk5b")]
+
+[node name="HitboxComponent" parent="." node_paths=PackedStringArray("teamComponent", "health") instance=ExtResource("12_do701")]
+teamComponent = NodePath("../TeamComponent")
+health = NodePath("../HealthComponent")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="HitboxComponent"]
+scale = Vector2(5.91, 5.91)
+shape = SubResource("CircleShape2D_d314s")
+debug_color = Color(0.615686, 0.517647, 0.407843, 0.419608)
+
+[node name="AIComponent" parent="." node_paths=PackedStringArray("actor", "teamComponent") instance=ExtResource("12_vhg02")]
+actor = NodePath("..")
+teamComponent = NodePath("../TeamComponent")

@@ -1,13 +1,74 @@
-[gd_scene load_steps=3 format=3 uid="uid://dvdtdj1y8t544"]
+[gd_scene load_steps=13 format=3 uid="uid://p7stu0qooy7"]
 
 [ext_resource type="Script" path="res://scenes/player.gd" id="1_c63en"]
-[ext_resource type="PackedScene" uid="uid://p7stu0qooy7" path="res://scenes/MainPlayer.tscn" id="2_m7v2k"]
+[ext_resource type="Texture2D" uid="uid://c78lt4xdv7151" path="res://art/playerGrey_up1.png" id="2_6mq3w"]
+[ext_resource type="PackedScene" uid="uid://xmyl3kitr57i" path="res://scenes/components/TeamComponent.tscn" id="2_gymdj"]
+[ext_resource type="Texture2D" uid="uid://dgvtatx2i8rbo" path="res://art/playerGrey_up2.png" id="3_7u1kb"]
+[ext_resource type="Texture2D" uid="uid://dcjf4b11v0pow" path="res://art/playerGrey_walk1.png" id="4_dsb61"]
+[ext_resource type="Texture2D" uid="uid://cr7qbwaxjw4fh" path="res://art/playerGrey_walk2.png" id="5_ycn73"]
+[ext_resource type="Script" path="res://scenes/soldier_sprite.gd" id="7_vxvsv"]
+[ext_resource type="PackedScene" uid="uid://dlg4jxu0tf3gn" path="res://scenes/components/HealthComponent.tscn" id="8_kam60"]
+[ext_resource type="PackedScene" uid="uid://fpukbu2ndkke" path="res://scenes/components/HitboxComponent.tscn" id="9_rvitg"]
 
-[node name="Player" type="Area2D"]
-position = Vector2(161, 187)
+[sub_resource type="SpriteFrames" id="SpriteFrames_ihcm0"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_6mq3w")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_7u1kb")
+}],
+"loop": true,
+"name": &"up",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("4_dsb61")
+}, {
+"duration": 1.0,
+"texture": ExtResource("5_ycn73")
+}],
+"loop": true,
+"name": &"walk",
+"speed": 5.0
+}]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_dni3p"]
+radius = 27.0
+height = 66.0
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_vu10p"]
+
+[node name="Player" type="CharacterBody2D"]
+motion_mode = 1
 script = ExtResource("1_c63en")
-metadata/_edit_group_ = true
 
-[node name="Player" parent="." instance=ExtResource("2_m7v2k")]
+[node name="TeamComponent" parent="." instance=ExtResource("2_gymdj")]
 
-[connection signal="body_entered" from="." to="." method="_on_body_entered"]
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." node_paths=PackedStringArray("team")]
+scale = Vector2(0.5, 0.5)
+sprite_frames = SubResource("SpriteFrames_ihcm0")
+animation = &"walk"
+frame_progress = 0.24726
+script = ExtResource("7_vxvsv")
+team = NodePath("../TeamComponent")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CapsuleShape2D_dni3p")
+
+[node name="Camera2D" type="Camera2D" parent="."]
+zoom = Vector2(0.52, 0.52)
+position_smoothing_enabled = true
+
+[node name="HealthComponent" parent="." instance=ExtResource("8_kam60")]
+
+[node name="HitboxComponent" parent="." node_paths=PackedStringArray("teamComponent", "health") instance=ExtResource("9_rvitg")]
+teamComponent = NodePath("../TeamComponent")
+health = NodePath("../HealthComponent")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="HitboxComponent"]
+scale = Vector2(5.41, 5.41)
+shape = SubResource("CircleShape2D_vu10p")
+debug_color = Color(0.415686, 0.603922, 0, 0.419608)

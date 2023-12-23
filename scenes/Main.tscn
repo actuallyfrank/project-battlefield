@@ -1,4 +1,4 @@
-[gd_scene load_steps=33 format=3 uid="uid://nxfhepak18cv"]
+[gd_scene load_steps=34 format=3 uid="uid://nxfhepak18cv"]
 
 [ext_resource type="Script" path="res://scenes/main.gd" id="1_sn1ky"]
 [ext_resource type="PackedScene" uid="uid://d3cjje873lnfc" path="res://scenes/Soldier.tscn" id="2_5casl"]
@@ -14,8 +14,9 @@
 [ext_resource type="Texture2D" uid="uid://ckc87no0bpdb3" path="res://art/enemyWalking_2.png" id="8_fhela"]
 [ext_resource type="Script" path="res://scenes/soldier_sprite.gd" id="9_eyk1d"]
 [ext_resource type="PackedScene" uid="uid://xmyl3kitr57i" path="res://scenes/components/TeamComponent.tscn" id="10_gp1to"]
-[ext_resource type="Script" path="res://scenes/ai.gd" id="11_1dpec"]
-[ext_resource type="PackedScene" uid="uid://p7stu0qooy7" path="res://scenes/MainPlayer.tscn" id="18_ycjvd"]
+[ext_resource type="Script" path="res://scenes/components/ai_component.gd" id="11_1dpec"]
+[ext_resource type="PackedScene" uid="uid://crejbqrq44457" path="res://scenes/Archer.tscn" id="16_gxegu"]
+[ext_resource type="PackedScene" uid="uid://p7stu0qooy7" path="res://scenes/Player.tscn" id="18_ycjvd"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_gkx8l"]
 animations = [{
@@ -1358,8 +1359,7 @@ position = Vector2(252, 245)
 
 [node name="Soldier" parent="." instance=ExtResource("2_5casl")]
 
-[node name="Soldier2" parent="." instance=ExtResource("2_5casl")]
-position = Vector2(296, 250)
+[node name="Archer" parent="." instance=ExtResource("16_gxegu")]
 
 [node name="Player" parent="." instance=ExtResource("18_ycjvd")]
-position = Vector2(1693, 837)
+position = Vector2(635, 760)

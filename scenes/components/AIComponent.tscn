@@ -1,0 +1,28 @@
+[gd_scene load_steps=3 format=3 uid="uid://obq0w7aamdgg"]
+
+[ext_resource type="Script" path="res://scenes/components/ai_component.gd" id="1_rco4c"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_r85ik"]
+
+[node name="AIComponent" type="Node2D"]
+script = ExtResource("1_rco4c")
+speed = 100.0
+
+[node name="Timer" type="Timer" parent="."]
+wait_time = 0.2
+autostart = true
+
+[node name="NavigationAgent2D" type="NavigationAgent2D" parent="."]
+debug_enabled = true
+debug_path_custom_color = Color(1, 0, 1, 1)
+
+[node name="DetectionZone" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="DetectionZone"]
+scale = Vector2(44.17, 44.17)
+shape = SubResource("CircleShape2D_r85ik")
+debug_color = Color(0.803922, 0.376471, 0.494118, 0.419608)
+
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
+[connection signal="area_entered" from="DetectionZone" to="." method="_on_detection_zone_area_entered"]
+[connection signal="area_exited" from="DetectionZone" to="." method="_on_detection_zone_area_exited"]
