@@ -1,5 +1,4 @@
-extends Area2D
-signal hit(body: Node2D)
+extends CharacterBody2D
 
 @export var speed = 400;
 
@@ -14,9 +13,9 @@ func start(pos: Vector2):
 	position = pos;
 	show();
 
-func _process(delta):
-	var velocity = calculate_velocity()
-	position = calculate_position(position, velocity, delta);
+func _physics_process(delta: float) -> void:
+	velocity = calculate_velocity()
+	move_and_slide();
 	animate_walk(velocity);
 
 
@@ -40,22 +39,14 @@ func animate_walk(velocity: Vector2):
 		$AnimatedSprite2D.flip_v = velocity.y > 0;
 		return;
 
-
-
-func calculate_position(current_position: Vector2, velocity: Vector2, delta: float) -> Vector2:
-	return current_position + velocity.normalized() * speed * delta;
-
 func calculate_velocity() -> Vector2:
-	var velocity = Vector2();
+	var inputVelocity = Vector2();
 	if Input.is_action_pressed(inputs.right):
-		velocity.x += 1;
+		inputVelocity.x += 1;
 	if Input.is_action_pressed(inputs.left):
-		velocity.x -= 1;
+		inputVelocity.x -= 1;
 	if Input.is_action_pressed(inputs.down):
-		velocity.y += 1;
+		inputVelocity.y += 1;
 	if Input.is_action_pressed(inputs.up):
-		velocity.y -= 1;
-	return velocity.normalized() * speed;
-
-func _on_body_entered(body: Node3D):
-	hit.emit(body);
+		inputVelocity.y -= 1;
+	return inputVelocity.normalized() * speed;

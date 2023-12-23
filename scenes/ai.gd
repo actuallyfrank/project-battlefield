@@ -25,7 +25,7 @@ func _on_timer_timeout():
 
 
 func _on_detection_zone_area_entered(area:Area2D):
-	if area is HitboxComponent:
+	if area is HitboxComponent and  area.teamComponent != null:
 		if area.teamComponent.team == teamComponent.team: 
 			print("same teamComponent")
 			return
