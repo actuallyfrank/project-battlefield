@@ -1,4 +1,4 @@
-[gd_scene load_steps=17 format=3 uid="uid://crejbqrq44457"]
+[gd_scene load_steps=18 format=3 uid="uid://crejbqrq44457"]
 
 [ext_resource type="Script" path="res://scenes/soldier.gd" id="1_uksc7"]
 [ext_resource type="Texture2D" uid="uid://dd45ioeer750b" path="res://art/enemyFlyingAlt_1.png" id="2_1mqii"]
@@ -12,7 +12,8 @@
 [ext_resource type="PackedScene" uid="uid://dlg4jxu0tf3gn" path="res://scenes/components/HealthComponent.tscn" id="11_ewk5b"]
 [ext_resource type="PackedScene" uid="uid://fpukbu2ndkke" path="res://scenes/components/HitboxComponent.tscn" id="12_do701"]
 [ext_resource type="PackedScene" uid="uid://obq0w7aamdgg" path="res://scenes/components/AIComponent.tscn" id="12_vhg02"]
-[ext_resource type="PackedScene" uid="uid://c4r0jiujlplbw" path="res://scenes/components/WeaponComponent.tscn" id="13_ii6pj"]
+[ext_resource type="Script" path="res://scenes/weapons/bow.gd" id="14_wt1tu"]
+[ext_resource type="PackedScene" uid="uid://dmu80cluoqakc" path="res://BuildingAtom.tscn" id="15_c82eg"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_bsvpx"]
 animations = [{
@@ -78,8 +79,7 @@ shape = SubResource("CapsuleShape2D_vt8tr")
 [node name="TeamComponent" parent="." instance=ExtResource("9_egnva")]
 team = 2
 
-[node name="HealthComponent" parent="." node_paths=PackedStringArray("soldier") instance=ExtResource("11_ewk5b")]
-soldier = NodePath("..")
+[node name="HealthComponent" parent="." instance=ExtResource("11_ewk5b")]
 
 [node name="HitboxComponent" parent="." node_paths=PackedStringArray("teamComponent", "health") instance=ExtResource("12_do701")]
 teamComponent = NodePath("../TeamComponent")
@@ -93,6 +93,8 @@ debug_color = Color(0.615686, 0.517647, 0.407843, 0.419608)
 [node name="AIComponent" parent="." node_paths=PackedStringArray("actor", "teamComponent", "weaponComponent") instance=ExtResource("12_vhg02")]
 actor = NodePath("..")
 teamComponent = NodePath("../TeamComponent")
-weaponComponent = NodePath("../WeaponComponent")
+weaponComponent = NodePath("../BowWeapon")
 
-[node name="WeaponComponent" parent="." instance=ExtResource("13_ii6pj")]
+[node name="BowWeapon" type="Node2D" parent="."]
+script = ExtResource("14_wt1tu")
+arrow = ExtResource("15_c82eg")

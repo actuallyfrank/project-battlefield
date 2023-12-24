@@ -28,16 +28,8 @@ func _on_timer_timeout():
 	if (weaponComponent == null):
 		return
 	
-	weaponComponent.attack(target)
+	weaponComponent.attack(target, teamComponent.team)
 	
-
-func isPossibleTarget(area: Area2D) -> bool:
-	if area is HitboxComponent and area.teamComponent is TeamComponent:
-		var isSameTeam = area.teamComponent.team == teamComponent.team
-		if isSameTeam: 
-			return false
-		return true
-	return false
 
 func isCurrentTarget(area: Area2D) -> bool:
 	if target == null:
@@ -52,7 +44,7 @@ func resetTarget() -> void:
 		target = actorsInRange[0]
 
 func _on_detection_zone_area_entered(area:Area2D):
-	if !isPossibleTarget(area):
+	if !HitUtils.canHit(area, teamComponent.team):
 		return
 
 	target = area
@@ -62,7 +54,7 @@ func _on_detection_zone_area_entered(area:Area2D):
 
 
 func _on_detection_zone_area_exited(area: Area2D):
-	if !isPossibleTarget(area):
+	if !HitUtils.canHit(area, teamComponent.team):
 		return
 	
 	if actorsInRange.find(area) == -1:

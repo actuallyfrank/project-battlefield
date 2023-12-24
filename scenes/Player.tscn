@@ -46,6 +46,7 @@ motion_mode = 1
 script = ExtResource("1_c63en")
 
 [node name="TeamComponent" parent="." instance=ExtResource("2_gymdj")]
+team = 1
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." node_paths=PackedStringArray("team")]
 scale = Vector2(0.5, 0.5)
@@ -59,10 +60,10 @@ team = NodePath("../TeamComponent")
 shape = SubResource("CapsuleShape2D_dni3p")
 
 [node name="Camera2D" type="Camera2D" parent="."]
-zoom = Vector2(0.52, 0.52)
 position_smoothing_enabled = true
 
 [node name="HealthComponent" parent="." instance=ExtResource("8_kam60")]
+max_health = 10000
 
 [node name="HitboxComponent" parent="." node_paths=PackedStringArray("teamComponent", "health") instance=ExtResource("9_rvitg")]
 teamComponent = NodePath("../TeamComponent")

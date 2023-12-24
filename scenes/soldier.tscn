@@ -79,8 +79,7 @@ shape = SubResource("CapsuleShape2D_vt8tr")
 [node name="TeamComponent" parent="." instance=ExtResource("9_h1icw")]
 team = 1
 
-[node name="HealthComponent" parent="." node_paths=PackedStringArray("soldier") instance=ExtResource("11_l1oc7")]
-soldier = NodePath("..")
+[node name="HealthComponent" parent="." instance=ExtResource("11_l1oc7")]
 
 [node name="HitboxComponent" parent="." node_paths=PackedStringArray("teamComponent", "health") instance=ExtResource("12_s1a8v")]
 teamComponent = NodePath("../TeamComponent")

@@ -2,14 +2,17 @@ extends Node2D
 
 class_name HealthComponent
 
-@export var soldier: Soldier = null
-@export var MaxHealth = 100
-var Health = MaxHealth
+@export var max_health = 100
+var health = max_health
+
+func _ready () -> void:
+	health = max_health
+	
 
 func hit (damage: int) -> void:
-    Health -= damage
+	health -= damage
 
-    print("Health: ", Health)
+	print("health: ", health)
 
-    if Health <= 0:
-        soldier.die()
+	if health <= 0:
+		get_parent().queue_free()

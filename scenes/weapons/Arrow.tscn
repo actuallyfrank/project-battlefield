@@ -1,0 +1,25 @@
+[gd_scene load_steps=5 format=3 uid="uid://fm5m15atq6fr"]
+
+[ext_resource type="Texture2D" uid="uid://q5pjdrnqjhrx" path="res://icon.svg" id="1_48ay3"]
+[ext_resource type="Script" path="res://scenes/weapons/projectile.gd" id="1_754q5"]
+[ext_resource type="Script" path="res://scenes/components/team_component.gd" id="3_jdjk5"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_jer6m"]
+size = Vector2(129, 7)
+
+[node name="Arrow" type="Area2D"]
+script = ExtResource("1_754q5")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(0, -0.500002)
+scale = Vector2(1, 0.0703125)
+texture = ExtResource("1_48ay3")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0.5, -0.5)
+shape = SubResource("RectangleShape2D_jer6m")
+
+[node name="TeamComponent" type="Node2D" parent="."]
+script = ExtResource("3_jdjk5")
+
+[connection signal="area_entered" from="." to="." method="_on_area_entered"]

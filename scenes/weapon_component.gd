@@ -4,7 +4,7 @@ class_name WeaponComponent
 
 @export var reach: float = 100 
 
-func attack(target: HitboxComponent):
+func attack(target: HitboxComponent, team: int):
 	print('ATTACK!')
 
 	var target_position = target.global_position
