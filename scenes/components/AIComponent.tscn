@@ -22,6 +22,11 @@ scale = Vector2(70, 70)
 shape = SubResource("CircleShape2D_r85ik")
 debug_color = Color(0.803922, 0.376471, 0.494118, 0.419608)
 
+[node name="TargetTimer" type="Timer" parent="."]
+wait_time = 5.0
+autostart = true
+
 [connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
 [connection signal="area_entered" from="DetectionZone" to="." method="_on_detection_zone_area_entered"]
 [connection signal="area_exited" from="DetectionZone" to="." method="_on_detection_zone_area_exited"]
+[connection signal="timeout" from="TargetTimer" to="." method="_on_target_timer_timeout"]

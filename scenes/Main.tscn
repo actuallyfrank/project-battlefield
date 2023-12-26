@@ -1367,25 +1367,4 @@ position = Vector2(370, 351)
 position = Vector2(635, 760)
 
 [node name="Archer2" parent="." instance=ExtResource("16_gxegu")]
-position = Vector2(740, 702)
-
-[node name="Archer3" parent="." instance=ExtResource("16_gxegu")]
-position = Vector2(1110, 1053)
-
-[node name="Archer4" parent="." instance=ExtResource("16_gxegu")]
-position = Vector2(1480, 1404)
-
-[node name="Soldier2" parent="." instance=ExtResource("2_5casl")]
-position = Vector2(276, 746)
-
-[node name="Soldier3" parent="." instance=ExtResource("2_5casl")]
-position = Vector2(229, 482)
-
-[node name="Soldier4" parent="." instance=ExtResource("2_5casl")]
-position = Vector2(427, 742)
-
-[node name="Soldier5" parent="." instance=ExtResource("2_5casl")]
-position = Vector2(530, 1104)
-
-[node name="Soldier6" parent="." instance=ExtResource("2_5casl")]
-position = Vector2(729, 1387)
+position = Vector2(764, 823)
