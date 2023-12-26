@@ -4,3 +4,8 @@
 
 [node name="WeaponComponent" type="Node2D"]
 script = ExtResource("1_4rowi")
+
+[node name="AttackTimer" type="Timer" parent="."]
+autostart = true
+
+[connection signal="timeout" from="AttackTimer" to="." method="_on_attack_timer_timeout"]

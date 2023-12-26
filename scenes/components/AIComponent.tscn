@@ -19,7 +19,7 @@ debug_path_custom_color = Color(1, 0, 1, 1)
 [node name="DetectionZone" type="Area2D" parent="."]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="DetectionZone"]
-scale = Vector2(44.17, 44.17)
+scale = Vector2(70, 70)
 shape = SubResource("CircleShape2D_r85ik")
 debug_color = Color(0.803922, 0.376471, 0.494118, 0.419608)
 

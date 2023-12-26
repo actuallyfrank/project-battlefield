@@ -1,8 +1,9 @@
 extends Node2D
+class_name AIComponent
+
 @export var speed: float = 10
 @export var actor: CharacterBody2D
 @export var teamComponent: TeamComponent
-@export var weaponComponent: WeaponComponent
 
 var target: HitboxComponent = null
 var actorsInRange: Array[HitboxComponent] = []
@@ -24,12 +25,6 @@ func _on_timer_timeout():
 		return
 
 	make_path_to_target()
-
-	if (weaponComponent == null):
-		return
-	
-	weaponComponent.attack(target, teamComponent.team)
-	
 
 func isCurrentTarget(area: Area2D) -> bool:
 	if target == null:

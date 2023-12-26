@@ -80,6 +80,7 @@ shape = SubResource("CapsuleShape2D_vt8tr")
 team = 2
 
 [node name="HealthComponent" parent="." instance=ExtResource("11_ewk5b")]
+max_health = 40
 
 [node name="HitboxComponent" parent="." node_paths=PackedStringArray("teamComponent", "health") instance=ExtResource("12_do701")]
 teamComponent = NodePath("../TeamComponent")
@@ -90,11 +91,13 @@ scale = Vector2(5.91, 5.91)
 shape = SubResource("CircleShape2D_d314s")
 debug_color = Color(0.615686, 0.517647, 0.407843, 0.419608)
 
-[node name="AIComponent" parent="." node_paths=PackedStringArray("actor", "teamComponent", "weaponComponent") instance=ExtResource("12_vhg02")]
+[node name="AIComponent" parent="." node_paths=PackedStringArray("actor", "teamComponent") instance=ExtResource("12_vhg02")]
 actor = NodePath("..")
 teamComponent = NodePath("../TeamComponent")
-weaponComponent = NodePath("../BowWeapon")
 
-[node name="BowWeapon" type="Node2D" parent="."]
+[node name="BowWeapon" type="Node2D" parent="." node_paths=PackedStringArray("ai", "team")]
 script = ExtResource("14_wt1tu")
 arrow = ExtResource("15_c82eg")
+ai = NodePath("../AIComponent")
+team = NodePath("../TeamComponent")
+cooldown = 3.0
