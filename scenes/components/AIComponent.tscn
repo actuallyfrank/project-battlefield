@@ -13,7 +13,6 @@ wait_time = 0.2
 autostart = true
 
 [node name="NavigationAgent2D" type="NavigationAgent2D" parent="."]
-debug_enabled = true
 debug_path_custom_color = Color(1, 0, 1, 1)
 
 [node name="DetectionZone" type="Area2D" parent="."]

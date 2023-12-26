@@ -5,14 +5,15 @@
 [ext_resource type="Script" path="res://scenes/components/team_component.gd" id="3_jdjk5"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_jer6m"]
-size = Vector2(129, 7)
+size = Vector2(49, 3)
 
 [node name="Arrow" type="Area2D"]
 script = ExtResource("1_754q5")
+speed = 1500
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 position = Vector2(0, -0.500002)
-scale = Vector2(1, 0.0703125)
+scale = Vector2(0.375, 0.0234375)
 texture = ExtResource("1_48ay3")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]

@@ -12,24 +12,26 @@ var didHit: bool = false
 func _ready():
 	start_position = global_position
 
-func _physics_process(delta):
+func _physics_process(delta: float):
 	if didHit:
 		return
 
-	var direction = global_rotation
-	position += Vector2(cos(direction), sin(direction)) * speed * delta
+	move(speed, delta)
 
 	if start_position.distance_to(global_position) > max_distance:
 		print("Projectile reached max distance")
 		queue_free() 
+
+func move(distance: int, delta: float):
+	var direction = global_rotation
+	position += Vector2(cos(direction), sin(direction)) * speed * delta
 
 func penetrate(area: Area2D):
 	reparent(area)
 	didHit = true
 
 func _on_area_entered(area:Area2D):
-	print("Projectile entered area", area.name)
-	if !HitUtils.canHit(area, team):
+	if didHit or !HitUtils.canHit(area, team):
 		return	
 	
 	var hitbox = HitUtils.getHitbox(area)
