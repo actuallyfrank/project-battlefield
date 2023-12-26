@@ -4,18 +4,50 @@ class_name AIComponent
 @export var speed: float = 10
 @export var actor: CharacterBody2D
 @export var teamComponent: TeamComponent
+@export var weaponComponent: WeaponComponent
+
+enum State { IDLE, CHASING, ATTACKING }
+var state: State = State.IDLE
 
 var target: HitboxComponent = null
 var actorsInRange: Array[HitboxComponent] = []
 
 @onready var nav_agent := $NavigationAgent2D as NavigationAgent2D
 
-func _physics_process(delta: float) -> void:
+func _physics_process(_delta: float) -> void:
+	if state != State.CHASING:
+		return
+
 	var current_agent_position: Vector2 = global_position
 	var next_path_position: Vector2 = nav_agent.get_next_path_position()
 
 	actor.velocity = current_agent_position.direction_to(next_path_position) * speed
 	actor.move_and_slide()
+
+func _process(_delta: float) -> void:
+	updateState()
+
+
+
+func updateState() -> void:
+	if canAttack():
+		state = State.ATTACKING
+		print("ATTACKING")
+		return
+
+	if target == null:
+		state = State.IDLE
+		return
+
+	state = State.CHASING
+
+func canAttack() -> bool:
+	if target == null or weaponComponent == null:
+		return false
+
+	return weaponComponent.isTargetInReach(target)
+	
+	
 
 func make_path_to_target() -> void:
 	nav_agent.target_position = target.global_position

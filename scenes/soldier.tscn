@@ -90,9 +90,10 @@ scale = Vector2(5.91, 5.91)
 shape = SubResource("CircleShape2D_d314s")
 debug_color = Color(0.615686, 0.517647, 0.407843, 0.419608)
 
-[node name="AIComponent" parent="." node_paths=PackedStringArray("actor", "teamComponent") instance=ExtResource("12_fre7e")]
+[node name="AIComponent" parent="." node_paths=PackedStringArray("actor", "teamComponent", "weaponComponent") instance=ExtResource("12_fre7e")]
 actor = NodePath("..")
 teamComponent = NodePath("../TeamComponent")
+weaponComponent = NodePath("../WeaponComponent")
 
 [node name="WeaponComponent" parent="." node_paths=PackedStringArray("ai", "team") instance=ExtResource("13_jijc6")]
 ai = NodePath("../AIComponent")
