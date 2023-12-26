@@ -2,7 +2,7 @@ extends Node2D
 
 class_name WeaponComponent
 
-@export var reach: float = 30 
+@export var reach: float = 100 
 @export var ai: AIComponent = null
 @export var team: TeamComponent = null
 @export var cooldown: float = 1

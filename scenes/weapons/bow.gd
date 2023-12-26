@@ -2,10 +2,9 @@ extends WeaponComponent
 
 @export var arrow: PackedScene
 
-var arrowScene: Resource = load("res://scenes/weapons/arrow.tscn")
 
 func attack(target: HitboxComponent, team: int):
-    var arrow_instance: Projectile = arrowScene.instantiate()
+    var arrow_instance: Projectile = arrow.instantiate()
 
     arrow_instance.global_transform.origin = global_transform.origin
     arrow_instance.look_at(target.global_transform.origin)

@@ -23,7 +23,7 @@ shape = SubResource("CircleShape2D_r85ik")
 debug_color = Color(0.803922, 0.376471, 0.494118, 0.419608)
 
 [node name="TargetTimer" type="Timer" parent="."]
-wait_time = 5.0
+wait_time = 2.0
 autostart = true
 
 [connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

@@ -80,6 +80,7 @@ shape = SubResource("CapsuleShape2D_vt8tr")
 team = 1
 
 [node name="HealthComponent" parent="." instance=ExtResource("11_l1oc7")]
+max_health = 150
 
 [node name="HitboxComponent" parent="." node_paths=PackedStringArray("teamComponent", "health") instance=ExtResource("12_s1a8v")]
 teamComponent = NodePath("../TeamComponent")
@@ -101,4 +102,5 @@ team = NodePath("../TeamComponent")
 cooldown = 2.0
 
 [node name="Sword" type="Sprite2D" parent="WeaponComponent"]
+visible = false
 texture = ExtResource("14_ihrly")

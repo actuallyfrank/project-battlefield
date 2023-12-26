@@ -1,4 +1,4 @@
-[gd_scene load_steps=18 format=3 uid="uid://crejbqrq44457"]
+[gd_scene load_steps=17 format=3 uid="uid://crejbqrq44457"]
 
 [ext_resource type="Script" path="res://scenes/soldier.gd" id="1_uksc7"]
 [ext_resource type="Texture2D" uid="uid://dd45ioeer750b" path="res://art/enemyFlyingAlt_1.png" id="2_1mqii"]
@@ -12,8 +12,7 @@
 [ext_resource type="PackedScene" uid="uid://dlg4jxu0tf3gn" path="res://scenes/components/HealthComponent.tscn" id="11_ewk5b"]
 [ext_resource type="PackedScene" uid="uid://fpukbu2ndkke" path="res://scenes/components/HitboxComponent.tscn" id="12_do701"]
 [ext_resource type="PackedScene" uid="uid://obq0w7aamdgg" path="res://scenes/components/AIComponent.tscn" id="12_vhg02"]
-[ext_resource type="Script" path="res://scenes/weapons/bow.gd" id="14_wt1tu"]
-[ext_resource type="PackedScene" uid="uid://dmu80cluoqakc" path="res://BuildingAtom.tscn" id="15_c82eg"]
+[ext_resource type="PackedScene" uid="uid://euwti5t2n5kp" path="res://scenes/weapons/Bow.tscn" id="13_vyepu"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_bsvpx"]
 animations = [{
@@ -92,14 +91,11 @@ shape = SubResource("CircleShape2D_d314s")
 debug_color = Color(0.615686, 0.517647, 0.407843, 0.419608)
 
 [node name="AIComponent" parent="." node_paths=PackedStringArray("actor", "teamComponent", "weaponComponent") instance=ExtResource("12_vhg02")]
+speed = 50.0
 actor = NodePath("..")
 teamComponent = NodePath("../TeamComponent")
 weaponComponent = NodePath("../BowWeapon")
 
-[node name="BowWeapon" type="Node2D" parent="." node_paths=PackedStringArray("ai", "team")]
-script = ExtResource("14_wt1tu")
-arrow = ExtResource("15_c82eg")
-reach = 400.0
+[node name="BowWeapon" parent="." node_paths=PackedStringArray("ai", "team") instance=ExtResource("13_vyepu")]
 ai = NodePath("../AIComponent")
 team = NodePath("../TeamComponent")
-cooldown = 3.0
