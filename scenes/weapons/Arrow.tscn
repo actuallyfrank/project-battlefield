@@ -1,8 +1,8 @@
 [gd_scene load_steps=5 format=3 uid="uid://fm5m15atq6fr"]
 
 [ext_resource type="Texture2D" uid="uid://q5pjdrnqjhrx" path="res://icon.svg" id="1_48ay3"]
-[ext_resource type="Script" path="res://scenes/weapons/projectile.gd" id="1_754q5"]
-[ext_resource type="Script" path="res://scenes/components/team_component.gd" id="3_jdjk5"]
+[ext_resource type="Script" uid="uid://d26ykkisikupy" path="res://scenes/weapons/projectile.gd" id="1_754q5"]
+[ext_resource type="Script" uid="uid://dj8j0ntdg2pmr" path="res://scenes/components/team_component.gd" id="3_jdjk5"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_jer6m"]
 size = Vector2(49, 3)

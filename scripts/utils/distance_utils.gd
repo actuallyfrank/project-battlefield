@@ -1,4 +1,4 @@
-class_name DistanceUtils 
+class_name DistanceUtils
 
 static func sortByDistance(currentPosition: Vector2, actors: Array) -> Array:
 	if actors.size() == 0:
@@ -11,7 +11,6 @@ static func sortByDistance(currentPosition: Vector2, actors: Array) -> Array:
 
 	sortedActors.sort_custom(sortFunc)
 	return sortedActors
-
 
 
 static func sort(a: Node2D, b: Node2D, currentPosition: Vector2) -> bool:

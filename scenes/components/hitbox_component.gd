@@ -6,4 +6,3 @@ class_name HitboxComponent
 
 func hit(damage: int):
 	health.hit(damage)
-

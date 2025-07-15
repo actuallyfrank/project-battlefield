@@ -1,12 +1,12 @@
 [gd_scene load_steps=13 format=3 uid="uid://p7stu0qooy7"]
 
-[ext_resource type="Script" path="res://scenes/player.gd" id="1_c63en"]
+[ext_resource type="Script" uid="uid://crld3iwcjg36s" path="res://scenes/player.gd" id="1_c63en"]
 [ext_resource type="Texture2D" uid="uid://c78lt4xdv7151" path="res://art/playerGrey_up1.png" id="2_6mq3w"]
 [ext_resource type="PackedScene" uid="uid://xmyl3kitr57i" path="res://scenes/components/TeamComponent.tscn" id="2_gymdj"]
 [ext_resource type="Texture2D" uid="uid://dgvtatx2i8rbo" path="res://art/playerGrey_up2.png" id="3_7u1kb"]
 [ext_resource type="Texture2D" uid="uid://dcjf4b11v0pow" path="res://art/playerGrey_walk1.png" id="4_dsb61"]
 [ext_resource type="Texture2D" uid="uid://cr7qbwaxjw4fh" path="res://art/playerGrey_walk2.png" id="5_ycn73"]
-[ext_resource type="Script" path="res://scenes/soldier_sprite.gd" id="7_vxvsv"]
+[ext_resource type="Script" uid="uid://cdvxs653gfaj3" path="res://scenes/soldier_sprite.gd" id="7_vxvsv"]
 [ext_resource type="PackedScene" uid="uid://dlg4jxu0tf3gn" path="res://scenes/components/HealthComponent.tscn" id="8_kam60"]
 [ext_resource type="PackedScene" uid="uid://fpukbu2ndkke" path="res://scenes/components/HitboxComponent.tscn" id="9_rvitg"]
 
