@@ -1,4 +1,4 @@
-[gd_scene load_steps=18 format=3 uid="uid://d3cjje873lnfc"]
+[gd_scene load_steps=19 format=3 uid="uid://d3cjje873lnfc"]
 
 [ext_resource type="Script" uid="uid://bvy71udktb4xy" path="res://scenes/soldier.gd" id="1_81x50"]
 [ext_resource type="Texture2D" uid="uid://dd45ioeer750b" path="res://art/enemyFlyingAlt_1.png" id="1_anlxk"]
@@ -57,8 +57,11 @@ height = 82.0
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_d314s"]
 
+[sub_resource type="Curve" id="Curve_wy8un"]
+_data = [Vector2(0, 0), 0.0, 0.0, 0, 0, Vector2(0.54, 0.988764), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+point_count = 3
+
 [node name="Soldier" type="CharacterBody2D"]
-position = Vector2(156, 126)
 motion_mode = 1
 wall_min_slide_angle = 0.0
 script = ExtResource("1_81x50")
@@ -100,6 +103,7 @@ weaponComponent = NodePath("../WeaponComponent")
 ai = NodePath("../AIComponent")
 team = NodePath("../TeamComponent")
 cooldown = 2.0
+animation_curve = SubResource("Curve_wy8un")
 
 [node name="Sword" type="Sprite2D" parent="WeaponComponent"]
 texture = ExtResource("14_ihrly")

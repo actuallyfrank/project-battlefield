@@ -2,11 +2,12 @@ extends Node2D
 class_name AIComponent
 
 @export var speed: float = 10
+@export var rotation_speed: float = 5.0
 @export var actor: CharacterBody2D
 @export var teamComponent: TeamComponent
 @export var weaponComponent: WeaponComponent
 
-enum State { IDLE, CHASING, ATTACKING }
+enum State {IDLE, CHASING, ATTACKING}
 var state: State = State.IDLE
 
 var target: HitboxComponent = null
@@ -24,10 +25,11 @@ func _physics_process(_delta: float) -> void:
 	actor.velocity = current_agent_position.direction_to(next_path_position) * speed
 	actor.move_and_slide()
 
-func _process(_delta: float) -> void:
+func _process(delta: float) -> void:
 	updateState()
-
-
+	
+	if target != null:
+		look_at_target(delta)
 
 func updateState() -> void:
 	if canAttack():
@@ -47,7 +49,6 @@ func canAttack() -> bool:
 	return weaponComponent.isTargetInReach(target)
 	
 	
-
 func make_path_to_target() -> void:
 	nav_agent.target_position = target.global_position
 
@@ -77,7 +78,7 @@ func sort(a: HitboxComponent, b: HitboxComponent) -> bool:
 		return false
 	return true
 
-func _on_detection_zone_area_entered(area:Area2D):
+func _on_detection_zone_area_entered(area: Area2D):
 	if !HitUtils.canHit(area, teamComponent.team):
 		return
 
@@ -102,5 +103,14 @@ func _on_detection_zone_area_exited(area: Area2D):
 
 
 func _on_target_timer_timeout():
-	actorsInRange = DistanceUtils.sortByDistance(global_position, actorsInRange) 
+	actorsInRange = DistanceUtils.sortByDistance(global_position, actorsInRange)
 	target = actorsInRange[0]
+
+func look_at_target(delta: float) -> void:
+	if target == null or actor == null:
+		return
+	
+	var direction_to_target = target.global_position - actor.global_position
+	var target_rotation = direction_to_target.angle()
+	
+	actor.rotation = lerp_angle(actor.rotation, target_rotation, rotation_speed * delta)
