@@ -1,0 +1,42 @@
+[gd_scene load_steps=3 format=3 uid="uid://b0jhkxd1sf3y2"]
+
+[ext_resource type="PackedScene" uid="uid://ci6ubltauti2v" path="res://blender/main.blend" id="1_vocos"]
+[ext_resource type="Material" uid="uid://qj418t3raxfi" path="res://materials/character_material.tres" id="2_q0stm"]
+
+[node name="main" instance=ExtResource("1_vocos")]
+
+[node name="Cone" parent="." index="3"]
+material_override = ExtResource("2_q0stm")
+
+[node name="Cone_001" parent="." index="4"]
+material_override = ExtResource("2_q0stm")
+
+[node name="Cylinder_001" parent="." index="5"]
+material_override = ExtResource("2_q0stm")
+
+[node name="Cube_004" parent="." index="6"]
+material_override = ExtResource("2_q0stm")
+
+[node name="Cube_005" parent="." index="7"]
+material_override = ExtResource("2_q0stm")
+
+[node name="Cylinder_002" parent="." index="8"]
+material_override = ExtResource("2_q0stm")
+
+[node name="Cube_006" parent="." index="9"]
+material_override = ExtResource("2_q0stm")
+
+[node name="Cylinder_003" parent="." index="10"]
+material_override = ExtResource("2_q0stm")
+
+[node name="Cube" parent="." index="11"]
+material_override = ExtResource("2_q0stm")
+
+[node name="Cylinder_004" parent="." index="12"]
+material_override = ExtResource("2_q0stm")
+
+[node name="Cylinder_005" parent="." index="13"]
+material_override = ExtResource("2_q0stm")
+
+[node name="Cube_007" parent="." index="14"]
+material_override = ExtResource("2_q0stm")

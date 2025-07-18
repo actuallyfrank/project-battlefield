@@ -1,13 +1,11 @@
-[gd_scene load_steps=3 format=3 uid="uid://cet1ypfap8ukb"]
+[gd_scene load_steps=4 format=3 uid="uid://cet1ypfap8ukb"]
 
-[ext_resource type="PackedScene" uid="uid://ci6ubltauti2v" path="res://blender/main.blend" id="1_m7dbh"]
+[ext_resource type="PackedScene" uid="uid://bogtwqggii25" path="res://scenes/character_1.tscn" id="2_3s264"]
+[ext_resource type="PackedScene" uid="uid://b0jhkxd1sf3y2" path="res://scenes/all_charachters.tscn" id="2_kefov"]
 
 [sub_resource type="PlaneMesh" id="PlaneMesh_3s264"]
 
 [node name="Main3d" type="Node3D"]
-
-[node name="main" parent="." instance=ExtResource("1_m7dbh")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.714607, -0.118637, -1.18038)
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="."]
 transform = Transform3D(64.278, 0, 0, 0, 1, 0, 0, 0, 78.2222, 0, 0, 0)
@@ -17,3 +15,9 @@ mesh = SubResource("PlaneMesh_3s264")
 transform = Transform3D(0.540287, -0.801954, -0.25487, -0.551559, -0.566249, 0.612491, -0.63551, -0.190345, -0.748262, 0, 8.16689, 0)
 light_color = Color(1, 1, 0.968627, 1)
 shadow_enabled = true
+
+[node name="character_2" parent="." instance=ExtResource("2_3s264")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6.54427, 0, 8)
+
+[node name="main2" parent="." instance=ExtResource("2_kefov")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0252018, 0, -4.72966)
