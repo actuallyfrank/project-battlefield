@@ -1,6 +1,6 @@
 class_name HitUtils
 
-static func canHit(area: Area2D, team: int = -1) -> bool:
+static func canHit(area: Area3D, team: int = -1) -> bool:
 	var areaHitbox = getHitbox(area)
 	if areaHitbox == null:
 		return false
@@ -10,13 +10,12 @@ static func canHit(area: Area2D, team: int = -1) -> bool:
 		return true
 	return false
 
-static func getHitbox(area: Area2D) -> HitboxComponent:
-	if area is HitboxComponent:
-		return area as HitboxComponent
+static func getHitbox(area: Area3D) -> HitboxComponent3D:
+	if area is HitboxComponent3D:
+		return area as HitboxComponent3D
 	return null
 
-static func getTeam(hitbox: HitboxComponent) -> int:
+static func getTeam(hitbox: HitboxComponent3D) -> int:
 	if hitbox.teamComponent:
 		return hitbox.teamComponent.team
 	return -1
-

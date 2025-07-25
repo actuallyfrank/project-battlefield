@@ -1,0 +1,64 @@
+[gd_scene load_steps=12 format=3 uid="uid://c4esh6wl4ryap"]
+
+[ext_resource type="Script" uid="uid://2xh7dveox2tj" path="res://navigation_test/soldier_3d.gd" id="1_le7gu"]
+[ext_resource type="Material" uid="uid://deho2n0c2ulqm" path="res://materials/red.tres" id="2_ieis8"]
+[ext_resource type="PackedScene" uid="uid://bsl0hy83ufbp7" path="res://navigation_test/ai_component_3d.tscn" id="2_lo42d"]
+[ext_resource type="Script" uid="uid://dj8j0ntdg2pmr" path="res://scenes/components/team_component.gd" id="3_ke5mx"]
+[ext_resource type="Script" uid="uid://dk0mv3gbp2p6v" path="res://navigation_test/weapon_component_3d.gd" id="4_3vdki"]
+[ext_resource type="Script" uid="uid://0rtx4ep5wxgf" path="res://scenes/components/health_component.gd" id="5_tql6y"]
+[ext_resource type="Script" uid="uid://cu2n25d0n1c3k" path="res://navigation_test/hitbox_component_3d.gd" id="6_m28ly"]
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_svu7k"]
+
+[sub_resource type="CapsuleMesh" id="CapsuleMesh_tvtaa"]
+
+[sub_resource type="BoxMesh" id="BoxMesh_le7gu"]
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_le7gu"]
+radius = 0.86
+
+[node name="Soldier3D" type="CharacterBody3D"]
+script = ExtResource("1_le7gu")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
+shape = SubResource("CapsuleShape3D_svu7k")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
+material_override = ExtResource("2_ieis8")
+mesh = SubResource("CapsuleMesh_tvtaa")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="MeshInstance3D"]
+transform = Transform3D(0.352386, 0, 0, 0, 0.486477, 0, 0, 0, 0.777238, 0, 0.269775, 0.581766)
+mesh = SubResource("BoxMesh_le7gu")
+
+[node name="AIComponent3D" parent="." node_paths=PackedStringArray("actor", "teamComponent", "weaponComponent") instance=ExtResource("2_lo42d")]
+actor = NodePath("..")
+teamComponent = NodePath("../TeamComponent")
+weaponComponent = NodePath("../WeaponComponent3D")
+
+[node name="HealthComponent" type="Node" parent="."]
+script = ExtResource("5_tql6y")
+metadata/_custom_type_script = "uid://0rtx4ep5wxgf"
+
+[node name="WeaponComponent3D" type="Node3D" parent="." node_paths=PackedStringArray("ai", "team")]
+script = ExtResource("4_3vdki")
+ai = NodePath("../AIComponent3D")
+team = NodePath("../TeamComponent")
+metadata/_custom_type_script = "uid://dk0mv3gbp2p6v"
+
+[node name="TeamComponent" type="Node" parent="."]
+script = ExtResource("3_ke5mx")
+team = 1
+metadata/_custom_type_script = "uid://dj8j0ntdg2pmr"
+
+[node name="HitboxComponent3D" type="Area3D" parent="." node_paths=PackedStringArray("teamComponent", "health")]
+script = ExtResource("6_m28ly")
+teamComponent = NodePath("../TeamComponent")
+health = NodePath("../HealthComponent")
+metadata/_custom_type_script = "uid://cu2n25d0n1c3k"
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="HitboxComponent3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.00425, 0)
+shape = SubResource("SphereShape3D_le7gu")

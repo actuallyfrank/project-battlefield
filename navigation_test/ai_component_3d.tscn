@@ -1,0 +1,32 @@
+[gd_scene load_steps=3 format=3 uid="uid://bsl0hy83ufbp7"]
+
+[ext_resource type="Script" uid="uid://cv20w7eg3g7t" path="res://navigation_test/ai_component_3d.gd" id="1_vpau3"]
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_f6axc"]
+radius = 6.125
+
+[node name="AIComponent3D" type="Node3D"]
+script = ExtResource("1_vpau3")
+speed = 3.0
+
+[node name="DetectionZone" type="Area3D" parent="."]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="DetectionZone"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.529216, 0)
+shape = SubResource("SphereShape3D_f6axc")
+
+[node name="NavigationAgent3D" type="NavigationAgent3D" parent="."]
+debug_enabled = true
+
+[node name="Timer" type="Timer" parent="."]
+wait_time = 0.2
+autostart = true
+
+[node name="TargetTimer" type="Timer" parent="."]
+wait_time = 2.0
+autostart = true
+
+[connection signal="area_entered" from="DetectionZone" to="." method="_on_detection_zone_area_entered"]
+[connection signal="area_exited" from="DetectionZone" to="." method="_on_detection_zone_area_exited"]
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
+[connection signal="timeout" from="TargetTimer" to="." method="_on_target_timer_timeout"]

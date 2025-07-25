@@ -1,0 +1,56 @@
+[gd_scene load_steps=7 format=3 uid="uid://2tisud8aiciy"]
+
+[ext_resource type="PackedScene" uid="uid://c4esh6wl4ryap" path="res://navigation_test/soldier_3d.tscn" id="1_3bsaf"]
+[ext_resource type="PackedScene" uid="uid://c0hrqi3tm4uo8" path="res://navigation_test/player_3d.tscn" id="2_g2fdf"]
+[ext_resource type="Script" uid="uid://bdwh34hsh0qpy" path="res://scenes/team_spawn_area.gd" id="3_g2fdf"]
+
+[sub_resource type="NavigationMesh" id="NavigationMesh_svu7k"]
+vertices = PackedVector3Array(-2, 0.358145, -2.25, -0.25, 0.358145, -2.5, -0.25, 0.358145, -9.5, -9.5, 0.358145, -0.75, -2, 0.358145, -0.75, -9.5, 0.358145, -9.5, 1.25, 0.358145, -2.25, 1.25, 0.358145, -0.75, 9.5, 0.358145, -0.75, 9.5, 0.358145, -9.5, -1, 1.85815, -1.5, -1, 1.85815, -0.25, 0.25, 1.85815, -0.25, 0.25, 1.85815, -1.5, -1.75, 0.358145, 0.75, -0.25, 0.358145, 9.5, -0.25, 0.358145, 0.75, -9.5, 0.358145, 9.5, 1, 0.358145, 0.75, 9.5, 0.358145, 9.5)
+polygons = [PackedInt32Array(2, 1, 0), PackedInt32Array(0, 4, 3), PackedInt32Array(3, 5, 0), PackedInt32Array(0, 5, 2), PackedInt32Array(6, 1, 2), PackedInt32Array(8, 7, 6), PackedInt32Array(8, 6, 9), PackedInt32Array(9, 6, 2), PackedInt32Array(13, 12, 10), PackedInt32Array(10, 12, 11), PackedInt32Array(3, 4, 14), PackedInt32Array(14, 16, 15), PackedInt32Array(15, 17, 14), PackedInt32Array(14, 17, 3), PackedInt32Array(7, 8, 18), PackedInt32Array(18, 8, 19), PackedInt32Array(18, 19, 15), PackedInt32Array(15, 16, 18)]
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_tvtaa"]
+
+[sub_resource type="BoxMesh" id="BoxMesh_3bsaf"]
+
+[node name="Navigation" type="Node3D"]
+
+[node name="NavigationRegion3D" type="NavigationRegion3D" parent="."]
+navigation_mesh = SubResource("NavigationMesh_svu7k")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="NavigationRegion3D"]
+transform = Transform3D(10, 0, 0, 0, 1, 0, 0, 0, 10, 0, 0, 0)
+mesh = SubResource("PlaneMesh_tvtaa")
+skeleton = NodePath("../..")
+
+[node name="Obstacle" type="Node3D" parent="NavigationRegion3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.281917, 0.766212, -0.826702)
+
+[node name="MeshInstance3D2" type="MeshInstance3D" parent="NavigationRegion3D/Obstacle"]
+transform = Transform3D(1.99, 0, 0, 0, 1.99, 0, 0, 0, 1.99, 0, 0, 0)
+mesh = SubResource("BoxMesh_3bsaf")
+skeleton = NodePath("../..")
+
+[node name="NavigationObstacle3D" type="NavigationObstacle3D" parent="NavigationRegion3D/Obstacle"]
+radius = 1.6
+
+[node name="Soldier3D" parent="." instance=ExtResource("1_3bsaf")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.17757, 0, 0)
+
+[node name="Camera3D" type="Camera3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 0.824255, 0.566219, 0, -0.566219, 0.824255, 0, 4.69791, 6.57083)
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 0.73644, 0.676503, 0, -0.676503, 0.73644, 0, 4.03549, 0)
+
+[node name="Player" parent="." instance=ExtResource("2_g2fdf")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.013, 0, 2.955)
+
+[node name="Soldier3D2" parent="." instance=ExtResource("1_3bsaf")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6.35195, 0, -2.99427)
+
+[node name="Node3D" type="Node3D" parent="."]
+script = ExtResource("3_g2fdf")
+team = 2
+distanceBetweenSoldiers = 2
+soldierOptions = Array[PackedScene]([ExtResource("1_3bsaf")])
+soldiers = Array[int]([0, 0])
