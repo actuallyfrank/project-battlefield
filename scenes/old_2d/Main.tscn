@@ -1,7 +1,7 @@
 [gd_scene load_steps=33 format=4 uid="uid://nxfhepak18cv"]
 
-[ext_resource type="Script" uid="uid://cgnigy8wt8bd" path="res://scenes/main.gd" id="1_sn1ky"]
-[ext_resource type="Script" uid="uid://bvy71udktb4xy" path="res://scenes/soldier.gd" id="2_bhdvf"]
+[ext_resource type="Script" uid="uid://cgnigy8wt8bd" path="res://scenes/old_2d/main.gd" id="1_sn1ky"]
+[ext_resource type="Script" uid="uid://bvy71udktb4xy" path="res://scenes/old_2d/soldier.gd" id="2_bhdvf"]
 [ext_resource type="Texture2D" uid="uid://di10ghvg4p3pu" path="res://art/obstacle.png" id="3_p0aiv"]
 [ext_resource type="Texture2D" uid="uid://dd45ioeer750b" path="res://art/enemyFlyingAlt_1.png" id="3_t516h"]
 [ext_resource type="Texture2D" uid="uid://dptx8jowau6ng" path="res://art/enemyFlyingAlt_2.png" id="4_lh4jq"]
@@ -11,11 +11,11 @@
 [ext_resource type="Texture2D" uid="uid://cpvl2miig1lko" path="res://art/enemySwimming_2.png" id="6_cx6qw"]
 [ext_resource type="Texture2D" uid="uid://cn054phjus4rl" path="res://art/enemyWalking_1.png" id="7_e7gtw"]
 [ext_resource type="Texture2D" uid="uid://ckc87no0bpdb3" path="res://art/enemyWalking_2.png" id="8_fhela"]
-[ext_resource type="Script" uid="uid://cdvxs653gfaj3" path="res://scenes/soldier_sprite.gd" id="9_eyk1d"]
-[ext_resource type="PackedScene" uid="uid://xmyl3kitr57i" path="res://scenes/components/TeamComponent.tscn" id="10_gp1to"]
-[ext_resource type="Script" uid="uid://divow7lidbb1p" path="res://scenes/components/ai_component.gd" id="11_1dpec"]
-[ext_resource type="PackedScene" uid="uid://h8yu6rh1awpv" path="res://scenes/TeamSpawnArea.tscn" id="18_v86qi"]
-[ext_resource type="PackedScene" uid="uid://p7stu0qooy7" path="res://scenes/Player.tscn" id="18_ycjvd"]
+[ext_resource type="Script" uid="uid://cdvxs653gfaj3" path="res://scenes/old_2d/soldier_sprite.gd" id="9_eyk1d"]
+[ext_resource type="PackedScene" uid="uid://xmyl3kitr57i" path="res://scenes/old_2d/components/TeamComponent.tscn" id="10_gp1to"]
+[ext_resource type="Script" uid="uid://divow7lidbb1p" path="res://scenes/old_2d/components/ai_component.gd" id="11_1dpec"]
+[ext_resource type="PackedScene" uid="uid://h8yu6rh1awpv" path="res://scenes/old_2d/TeamSpawnArea.tscn" id="18_v86qi"]
+[ext_resource type="PackedScene" uid="uid://p7stu0qooy7" path="res://scenes/old_2d/Player.tscn" id="18_ycjvd"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_gkx8l"]
 animations = [{

@@ -1,0 +1,10 @@
+[gd_scene load_steps=3 format=3 uid="uid://euwti5t2n5kp"]
+
+[ext_resource type="Script" uid="uid://ddlejhg32dbco" path="res://scenes/old_2d/weapons/bow.gd" id="1_caw6l"]
+[ext_resource type="PackedScene" uid="uid://fm5m15atq6fr" path="res://scenes/old_2d/weapons/Arrow.tscn" id="2_62ndq"]
+
+[node name="BowWeapon" type="Node2D"]
+script = ExtResource("1_caw6l")
+arrow = ExtResource("2_62ndq")
+reach = 400.0
+cooldown = 3.0

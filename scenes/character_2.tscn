@@ -1,0 +1,54 @@
+[gd_scene load_steps=6 format=3 uid="uid://bqclnrper2iih"]
+
+[ext_resource type="PackedScene" uid="uid://ca7m2x2giiem1" path="res://blender/character_2.glb" id="1_c4068"]
+[ext_resource type="Material" uid="uid://qj418t3raxfi" path="res://materials/character_material.tres" id="2_afpa3"]
+
+[sub_resource type="Animation" id="Animation_n74hp"]
+length = 0.001
+tracks/0/type = "position_3d"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("shield_001")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = PackedFloat32Array(0, 1, 1.44303, 1.8311, 0.272894)
+
+[sub_resource type="Animation" id="Animation_afpa3"]
+resource_name = "new_animation"
+length = 5.0
+loop_mode = 2
+tracks/0/type = "position_3d"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("shield_001")
+tracks/0/interp = 2
+tracks/0/loop_wrap = true
+tracks/0/keys = PackedFloat32Array(0, 1, 1.44303, 1.8311, 0.272894, 2.53333, 1, 1.443, 2, 0.273, 5, 1, 1.44303, 1.8311, 0.272894)
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_ryofq"]
+_data = {
+&"RESET": SubResource("Animation_n74hp"),
+&"new_animation": SubResource("Animation_afpa3")
+}
+
+[node name="character_2" instance=ExtResource("1_c4068")]
+
+[node name="sword_001" parent="." index="0"]
+transform = Transform3D(-0.0767856, -6.33299e-08, -0.997048, 0.553159, 0.831986, -0.0426005, 0.82953, -0.554797, -0.0638845, -1.67481, 2.70492, -0.0816889)
+material_override = ExtResource("2_afpa3")
+
+[node name="head_001" parent="." index="1"]
+material_override = ExtResource("2_afpa3")
+
+[node name="body_001" parent="." index="2"]
+material_override = ExtResource("2_afpa3")
+
+[node name="shield_001" parent="." index="3"]
+transform = Transform3D(0.721639, 0, 0.692269, 0, 1, 0, -0.692269, 0, 0.721639, 1.44303, 1.8311, 0.272894)
+material_override = ExtResource("2_afpa3")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="." index="4"]
+libraries = {
+&"": SubResource("AnimationLibrary_ryofq")
+}
+autoplay = "new_animation"

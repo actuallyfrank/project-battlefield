@@ -1,7 +1,9 @@
-[gd_scene load_steps=4 format=3 uid="uid://cet1ypfap8ukb"]
+[gd_scene load_steps=6 format=3 uid="uid://cet1ypfap8ukb"]
 
 [ext_resource type="PackedScene" uid="uid://bogtwqggii25" path="res://scenes/character_1.tscn" id="2_3s264"]
 [ext_resource type="PackedScene" uid="uid://b0jhkxd1sf3y2" path="res://scenes/all_charachters.tscn" id="2_kefov"]
+[ext_resource type="PackedScene" uid="uid://ca7m2x2giiem1" path="res://blender/character_2.glb" id="3_kefov"]
+[ext_resource type="PackedScene" uid="uid://bqclnrper2iih" path="res://scenes/character_2.tscn" id="4_mt54i"]
 
 [sub_resource type="PlaneMesh" id="PlaneMesh_3s264"]
 
@@ -11,13 +13,29 @@
 transform = Transform3D(64.278, 0, 0, 0, 1, 0, 0, 0, 78.2222, 0, 0, 0)
 mesh = SubResource("PlaneMesh_3s264")
 
+[node name="DirectionalLight3D2" type="DirectionalLight3D" parent="."]
+transform = Transform3D(0.91662, 0.368819, -0.154205, -0.372345, 0.647303, -0.6651, -0.145484, 0.667061, 0.73066, -6.54947, 3.5424, -1.55453)
+visible = false
+light_color = Color(1, 1, 0.909804, 1)
+light_energy = 0.2
+shadow_opacity = 0.5
+
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
 transform = Transform3D(0.540287, -0.801954, -0.25487, -0.551559, -0.566249, 0.612491, -0.63551, -0.190345, -0.748262, 0, 8.16689, 0)
-light_color = Color(1, 1, 0.968627, 1)
+light_color = Color(1, 1, 0.909804, 1)
 shadow_enabled = true
 
 [node name="character_2" parent="." instance=ExtResource("2_3s264")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6.54427, 0, 8)
 
 [node name="main2" parent="." instance=ExtResource("2_kefov")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0252018, 0, -4.72966)
+transform = Transform3D(-0.667217, 0.000297174, -0.744863, 0.000684556, 1, -0.000214243, 0.744863, -0.000652844, -0.667217, -0.0252018, 0, -4.72966)
+
+[node name="Camera3D" type="Camera3D" parent="."]
+transform = Transform3D(-0.469395, 0, -0.882989, 0, 1, 0, 0.882989, 0, -0.469395, -17.7279, 5.88233, -6.76859)
+
+[node name="character_3" parent="." instance=ExtResource("3_kefov")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5.56141, -0.325729, -1.1091)
+
+[node name="character_4" parent="." instance=ExtResource("4_mt54i")]
+transform = Transform3D(-0.847215, 0, -0.531251, 0, 1, 0, 0.531251, 0, -0.847215, 4.17821, -9.53674e-07, -8.82641)
