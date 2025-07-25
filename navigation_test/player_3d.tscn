@@ -1,10 +1,14 @@
-[gd_scene load_steps=10 format=3 uid="uid://c0hrqi3tm4uo8"]
+[gd_scene load_steps=14 format=3 uid="uid://c0hrqi3tm4uo8"]
 
 [ext_resource type="Script" uid="uid://lv1d5hc8hq4s" path="res://navigation_test/player_body_3d.gd" id="1_sbtnn"]
 [ext_resource type="Material" uid="uid://qj418t3raxfi" path="res://materials/character_material.tres" id="2_kqafe"]
 [ext_resource type="Script" uid="uid://cu2n25d0n1c3k" path="res://navigation_test/hitbox_component_3d.gd" id="3_1vnuu"]
 [ext_resource type="Script" uid="uid://0rtx4ep5wxgf" path="res://scenes/components/health_component.gd" id="4_kqafe"]
 [ext_resource type="Script" uid="uid://dj8j0ntdg2pmr" path="res://scenes/components/team_component.gd" id="5_1vnuu"]
+[ext_resource type="Script" uid="uid://cokpsrhb4sdma" path="res://navigation_test/color_assignment.gd" id="6_4yodt"]
+[ext_resource type="Material" uid="uid://deho2n0c2ulqm" path="res://materials/red.tres" id="7_wpgw5"]
+[ext_resource type="Material" uid="uid://hjloh6eummjs" path="res://materials/green.tres" id="8_5kdjp"]
+[ext_resource type="Material" uid="uid://ntfds6w6di0u" path="res://materials/yellow.tres" id="9_84se4"]
 
 [sub_resource type="BoxMesh" id="BoxMesh_tvtaa"]
 
@@ -54,3 +58,9 @@ metadata/_custom_type_script = "uid://cu2n25d0n1c3k"
 [node name="CollisionShape3D" type="CollisionShape3D" parent="HitboxComponent3D"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.00425, 0)
 shape = SubResource("SphereShape3D_1vnuu")
+
+[node name="Node" type="Node" parent="." node_paths=PackedStringArray("teamComponent", "meshInstances")]
+script = ExtResource("6_4yodt")
+teamComponent = NodePath("../TeamComponent")
+materialOptions = Array[Material]([ExtResource("7_wpgw5"), ExtResource("8_5kdjp"), ExtResource("9_84se4")])
+meshInstances = [NodePath("../MeshInstance3D")]

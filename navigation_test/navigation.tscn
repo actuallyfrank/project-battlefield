@@ -48,9 +48,16 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.013, 0, 2.955)
 [node name="Soldier3D2" parent="." instance=ExtResource("1_3bsaf")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6.35195, 0, -2.99427)
 
-[node name="Node3D" type="Node3D" parent="."]
+[node name="SpawnerTeam2" type="Node3D" parent="."]
 script = ExtResource("3_g2fdf")
 team = 2
+distanceBetweenSoldiers = 2
+soldierOptions = Array[PackedScene]([ExtResource("1_3bsaf")])
+soldiers = Array[int]([0, 0])
+
+[node name="SpawnerTeam0" type="Node3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.67594, 0, 3.3782)
+script = ExtResource("3_g2fdf")
 distanceBetweenSoldiers = 2
 soldierOptions = Array[PackedScene]([ExtResource("1_3bsaf")])
 soldiers = Array[int]([0, 0])

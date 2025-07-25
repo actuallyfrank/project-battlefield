@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=3 uid="uid://c4esh6wl4ryap"]
+[gd_scene load_steps=15 format=3 uid="uid://c4esh6wl4ryap"]
 
 [ext_resource type="Script" uid="uid://2xh7dveox2tj" path="res://navigation_test/soldier_3d.gd" id="1_le7gu"]
 [ext_resource type="Material" uid="uid://deho2n0c2ulqm" path="res://materials/red.tres" id="2_ieis8"]
@@ -7,6 +7,9 @@
 [ext_resource type="Script" uid="uid://dk0mv3gbp2p6v" path="res://navigation_test/weapon_component_3d.gd" id="4_3vdki"]
 [ext_resource type="Script" uid="uid://0rtx4ep5wxgf" path="res://scenes/components/health_component.gd" id="5_tql6y"]
 [ext_resource type="Script" uid="uid://cu2n25d0n1c3k" path="res://navigation_test/hitbox_component_3d.gd" id="6_m28ly"]
+[ext_resource type="Script" uid="uid://cokpsrhb4sdma" path="res://navigation_test/color_assignment.gd" id="8_ke5mx"]
+[ext_resource type="Material" uid="uid://hjloh6eummjs" path="res://materials/green.tres" id="9_tql6y"]
+[ext_resource type="Material" uid="uid://ntfds6w6di0u" path="res://materials/yellow.tres" id="10_m28ly"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_svu7k"]
 
@@ -62,3 +65,10 @@ metadata/_custom_type_script = "uid://cu2n25d0n1c3k"
 [node name="CollisionShape3D" type="CollisionShape3D" parent="HitboxComponent3D"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.00425, 0)
 shape = SubResource("SphereShape3D_le7gu")
+
+[node name="Node3D" type="Node3D" parent="." node_paths=PackedStringArray("teamComponent", "meshInstances")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.00534463, 0, 0.00208998)
+script = ExtResource("8_ke5mx")
+teamComponent = NodePath("../TeamComponent")
+materialOptions = Array[Material]([ExtResource("2_ieis8"), ExtResource("9_tql6y"), ExtResource("10_m28ly")])
+meshInstances = [NodePath("../MeshInstance3D"), NodePath("../MeshInstance3D/MeshInstance3D")]
