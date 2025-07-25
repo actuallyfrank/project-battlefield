@@ -1,0 +1,7 @@
+[gd_scene load_steps=2 format=3 uid="uid://buufptexgsbiv"]
+
+[ext_resource type="Script" uid="uid://cokpsrhb4sdma" path="res://navigation_test/color_assignment.gd" id="1_x1dmn"]
+
+[node name="ColorAssignment" type="Node3D"]
+script = ExtResource("1_x1dmn")
+materialOptions = Array[Material]([null])

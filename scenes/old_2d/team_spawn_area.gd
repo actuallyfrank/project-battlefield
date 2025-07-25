@@ -1,4 +1,4 @@
-extends Node2D
+extends Node3D
 
 @export var team: int = 0
 @export var distanceBetweenSoldiers: int = 10
@@ -16,8 +16,6 @@ func _ready():
 		print(teamComponent)
 
 		teamComponent.team = team
-		unit.position = Vector2(i * distanceBetweenSoldiers, 0)
+		unit.position = Vector3(i * distanceBetweenSoldiers, 0, 0)
 
 		add_child(unit)
-
-
